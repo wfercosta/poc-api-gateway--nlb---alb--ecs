@@ -1,0 +1,14 @@
+openapi: 3.0.1
+info:
+  title: ${prefix}-rest-api
+  version: "1.0"
+paths:
+  "/process/webhook":
+    post:
+      x-amazon-apigateway-integration:
+        type: HTTP_PROXY
+        httpMethod: POST
+        connectionType: VPC_LINK
+        connectionId: ${vpc_link_id}
+        passthroughBehavior: never
+        uri: http://${nlb_dns}/process/webhook
